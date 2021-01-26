@@ -1,4 +1,3 @@
-
 function run(categChoices, allLib) {
 
     $("#chart").html("");
@@ -22,12 +21,11 @@ function run(categChoices, allLib) {
     }
 
     function csvToZoomableJson(data) {
-
         var result = generateChildren(data, allLib, categChoices, 0);
         return result;
     }
 
-    d3.csv("http://localhost:8000/data/flare.csv").then(function (data_csv) {
+    d3.csv(csvFile).then(function (data_csv) {
 
         let data = csvToZoomableJson(data_csv);
 
@@ -41,7 +39,7 @@ function run(categChoices, allLib) {
 
             function partition(d) {
                 const root = d3.hierarchy(d)
-                    .sum(d => d.montant)
+                    .sum(d => d[aggKey])
                     .sort((a, b) => b.height - a.height || b.value - a.value);
                 return d3.partition()
                     .size([height, (root.height + 1) * width / 3])
@@ -118,10 +116,8 @@ function run(categChoices, allLib) {
                 return d.y1 <= width && d.y0 >= 0 && d.x1 - d.x0 > 16;
             }
         }
-
         chart();
-
     });
 }
 
-run(["c1", "c2", "c3"], "All");
+run(initialOrder, initialLib);

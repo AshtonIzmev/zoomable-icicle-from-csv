@@ -30,6 +30,7 @@
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.5.0/d3.min.js"></script>
 
+    <script src="config.js"></script>
     <script src="zoomable.js"></script>
     <svg id='chart'></svg>
     <meta charset="utf-8">
@@ -40,6 +41,12 @@
     
     <script>
         $(function () {
+
+            breakCategories.forEach( k => {
+                $("#sortable").append(
+                    '<li id="' + k[0] + '" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>' + k[1] + '</li>'
+                )
+            })
             $("#sortable").sortable();
             $("#sortable").disableSelection();
             $("#sortable").on("sortstop", function(event, ui) {
@@ -52,10 +59,6 @@
 
     <div>
         <ul id="sortable">
-            <li id="c1" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Categorie 1</li>
-            <li id="c2" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Categorie 2</li>
-            <li id="c3" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Categorie 3</li>
-            <li id="c4" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Categorie 4</li>
         </ul>
     </div>
 
