@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html style="padding: 20px;">
+
+<head>
+    <style>
+        #sortable {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 60%;
+        }
+
+        #sortable li {
+            margin: 0 3px 3px 3px;
+            padding: 0.4em;
+            padding-left: 1.5em;
+            font-size: 1.4em;
+            height: 18px;
+        }
+
+        #sortable li span {
+            position: absolute;
+            margin-left: -1.3em;
+        }
+    </style>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.5.0/d3.min.js"></script>
+
+    <script src="zoomable.js"></script>
+    <svg id='chart'></svg>
+    <meta charset="utf-8">
+    <title>Zoomable Icicle</title>
+</head>
+
+<body>
+    
+    <script>
+        $(function () {
+            $("#sortable").sortable();
+            $("#sortable").disableSelection();
+            $("#sortable").on("sortstop", function(event, ui) {
+                var order = $("#sortable").sortable("toArray");
+                run(order, "Tout");
+            } );
+
+        });
+    </script>
+
+    <div>
+        <ul id="sortable">
+            <li id="c1" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Categorie 1</li>
+            <li id="c2" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Categorie 2</li>
+            <li id="c3" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Categorie 3</li>
+            <li id="c4" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Categorie 4</li>
+        </ul>
+    </div>
+
+    <div>
+        <span>Thanks to Mike Bostock. Based on : https://observablehq.com/@d3/zoomable-icicle</span>
+    </div>
+
+</body>
+
+</html>
