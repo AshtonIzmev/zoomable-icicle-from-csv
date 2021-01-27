@@ -3,8 +3,9 @@ function run(categChoices, allLib) {
     $("#chart").html("");
 
     function generateChildren(node, categ_lib, categ_list, i) {
-        if (i == categ_list.length) {
-            return node[0];
+        if (i == maxDepth) {
+            var summation = node.reduce(function(acc, val) { return acc + parseFloat(val[aggKey]); }, 0);
+            return {[aggKey]: summation};
         }
 
         var grouped = _.groupBy(node, function (mvt) {

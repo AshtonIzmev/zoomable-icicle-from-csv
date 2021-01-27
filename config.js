@@ -5,3 +5,4 @@ const breakCategories = [["c1", "Categorie 1"], ["c2", "Categorie 2"], ["c3", "C
 
 const initialOrder = ["c1", "c2", "c3"];
 const initialLib = "Tout";
+const maxDepth = Math.min(3, breakCategories.length);
