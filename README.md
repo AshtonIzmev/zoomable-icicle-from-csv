@@ -3,5 +3,11 @@ Build an Icicle based on https://observablehq.com/@d3/zoomable-icicle using a cs
 
 Moreover, a sortable jquery ui widget can reorder the zoomable analysis axis
 
+# Getting started
+As easy as : 
+```shellscript
+python -m http.server
+```
+
 # Next steps
-* Plug with dc.js
+- [x] Plug with dc.js
