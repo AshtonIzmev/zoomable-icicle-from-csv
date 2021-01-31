@@ -23,15 +23,25 @@
             position: absolute;
             margin-left: -1.3em;
         }
+
+        .fl {
+            float: left;
+        }
     </style>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="//unpkg.com/dc@4/dist/style/dc.css">
+
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.5.0/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter2/1.5.4/crossfilter.min.js"></script>
+
+    <script src="https://unpkg.com/dc@4/dist/dc.js"></script>
 
     <script src="config.js"></script>
+    <script src="chart.js"></script>
     <script src="zoomable.js"></script>
     <svg id='chart'></svg>
     <meta charset="utf-8">
@@ -39,10 +49,8 @@
 </head>
 
 <body>
-    
     <script>
         $(function () {
-
             breakCategories.forEach( k => {
                 $("#sortable").append(
                     '<li id="' + k[0] + '" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>' + k[1] + '</li>'
@@ -54,7 +62,6 @@
                 var order = $("#sortable").sortable("toArray");
                 run(order, "All");
             } );
-
         });
     </script>
 
@@ -62,6 +69,8 @@
         <ul id="sortable">
         </ul>
     </div>
+
+    <div id="pies"></div>
 
     <div>
         <span>Thanks to Mike Bostock. Based on : https://observablehq.com/@d3/zoomable-icicle</span>
